@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:remedic/app/home_screen.dart';
 import 'package:remedic/app/history_screen.dart';
 import 'package:remedic/app/add_reminder.dart';
@@ -18,35 +19,140 @@ class _AppNavigatorState extends State<AppNavigator> {
   final List<Widget> _screens = const [
     HomeScreen(),
     HistoryScreen(),
-    AddReminderScreen(),
     SettingsScreen(),
-    ProfileScreen()
+    ProfileScreen(),
+    AddReminderScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    //body: _screens[_selectedIndex],
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        bottomNavigationBar: TabBar(
-          labelPadding: EdgeInsetsGeometry.directional(bottom: 12),
-          dividerColor: Colors.transparent,
-          indicatorColor: Colors.black,
-          tabs: [
-            Tab(icon: Icon(Icons.directions_car)),
-            Tab(icon: Icon(Icons.directions_transit)),
-            Tab(icon: Icon(Icons.directions_bike)),
-            Tab(icon: Icon(Icons.directions_boat)),
-          ],
-        ),
-        body: const TabBarView(
-          children: [
-            Icon(Icons.directions_car),
-            Icon(Icons.directions_transit),
-            Icon(Icons.directions_bike),
-            Icon(Icons.directions_boat),
-          ],
+    return Scaffold(
+      body: SafeArea(child:
+        _screens[_selectedIndex],
+      ),
+      bottomNavigationBar: SafeArea(
+        child: SizedBox(
+          height: 100,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                left: 40,
+                right: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 0;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(18),
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          color: _selectedIndex == 0 ? Colors.white : const Color(0x31A8A8A8),
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Icon(
+                          FontAwesomeIcons.solidHouse,
+                          color: _selectedIndex == 0 ? Colors.black : Colors.grey,
+                          size: 30
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 1;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(18),
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          color: _selectedIndex == 1 ? Colors.white : const Color(0x31A8A8A8),
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Icon(
+                          Icons.article_rounded,
+                          color: _selectedIndex == 1 ? Colors.black : Colors.grey,
+                          size: 32
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 65),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 2;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(18),
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          color: _selectedIndex == 2 ? Colors.white : const Color(0x31A8A8A8),
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Icon(
+                          FontAwesomeIcons.sliders,
+                          color: _selectedIndex == 2 ? Colors.black : Colors.grey,
+                          size: 30
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 3;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(18),
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                          color: _selectedIndex == 3 ? Colors.white : const Color(0x31A8A8A8),
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        child: Icon(
+                          FontAwesomeIcons.solidCircleUser,
+                          color: _selectedIndex == 3 ? Colors.black : Colors.grey,
+                          size: 30
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 4;
+                    });
+                  },
+                  borderRadius: BorderRadius.circular(15),
+                  child: Container(
+                    height: 67,
+                    width: 67,
+                    margin: const EdgeInsetsGeometry.directional(start: 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: _selectedIndex == 4 ? Colors.white : const Color(0x31A8A8A8),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      size: 35,
+                      color: _selectedIndex == 4 ? Colors.black : Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
