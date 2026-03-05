@@ -14,13 +14,13 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-                margin: EdgeInsetsGeometry.directional(top: size.height * 0.01),
-                child: Image.asset("assets/welcome.png")
+              margin: EdgeInsetsGeometry.directional(top: size.height * 0.01),
+              child: Image.asset("assets/welcome.png")
             ),
             Container(
               margin: EdgeInsetsGeometry.directional(
-                  top: size.height * 0.04,
-                  bottom: size.height * 0.04
+                top: size.height * 0.04,
+                bottom: size.height * 0.04
               ),
               child: Text(
                 "Welcome to\nRemedic",
@@ -31,18 +31,18 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             Container(
-                margin: EdgeInsetsGeometry.directional(
-                  bottom: size.height * 0.07,
-                  start: size.width * 0.05,
-                  end: size.width * 0.05,
+              margin: EdgeInsetsGeometry.directional(
+                bottom: size.height * 0.07,
+                start: size.width * 0.05,
+                end: size.width * 0.06,
+              ),
+              child: Text(
+                "Stay on track with your medications, every day. Remedic reminds you when it’s time for your medicine, keeps track of your supplies, and helps you manage your complete medical history — all in one place.",
+                style: TextStyle(
+                  fontSize: size.width * 0.036,
                 ),
-                child: Text(
-                  "Stay on track with your medications, every day. Remedic reminds you when it’s time for your medicine, keeps track of your supplies, and helps you manage your complete medical history — all in one place.",
-                  style: TextStyle(
-                    fontSize: size.width * 0.04,
-                  ),
-                  textAlign: TextAlign.center,
-                )
+                textAlign: TextAlign.center,
+              )
             ),
 
             Padding(
@@ -71,7 +71,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Login",
-                        style: TextStyle(fontSize: size.width * 0.042),
+                        style: TextStyle(fontSize: size.width * 0.04),
                       ),
                     ),
                   ),
@@ -99,7 +99,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Register",
-                        style: TextStyle(fontSize: size.width * 0.042),
+                        style: TextStyle(fontSize: size.width * 0.04),
                       ),
                     ),
                   ),

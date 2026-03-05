@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:remedic/app/home_screen.dart';
-import 'package:remedic/app/history_screen.dart';
-import 'package:remedic/app/add_reminder.dart';
-import 'package:remedic/app/settings_screen.dart';
-import 'package:remedic/app/profile_screen.dart';
+import 'app/home_screen.dart';
+import 'app/history_screen.dart';
+import 'app/add_reminder.dart';
+import 'app/settings_screen.dart';
+import 'app/profile_screen.dart';
 
 class AppNavigator extends StatefulWidget {
   const AppNavigator({super.key});
