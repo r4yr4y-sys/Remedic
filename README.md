@@ -13,6 +13,8 @@
 
 ## 📱 About
 
+there is something to be said that i wish i had said earlier.
+
 ---
 
 ## ✨ Features
