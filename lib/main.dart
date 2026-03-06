@@ -19,7 +19,7 @@ class RemedicApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0x00000000),
+        scaffoldBackgroundColor: const Color(0xFF000000),
         useMaterial3: true,
       ),
 
