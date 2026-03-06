@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   font_awesome_flutter: ^10.12.0
+  google_fonts: ^8.0.2
 
 dev_dependencies:
   flutter_test:
@@ -24,16 +25,7 @@ flutter:
   assets:
     - assets/
 
-  fonts:
-    - family: NotoSans
-      fonts:
-        - asset: fonts/NotoSans-Regular.ttf
-        - asset: fonts/NotoSans-Medium.ttf
-        - asset: fonts/NotoSans-Light.ttf
-        - asset: fonts/NotoSans-Thin.ttf
-        - asset: fonts/NotoSans-SemiBold.ttf
-    - family: Poppins
-      fonts:
-        - asset: fonts/Poppins-Regular.ttf
-        - asset: fonts/Poppins-Medium.ttf
-        - asset: fonts/Poppins-SemiBold.ttf
+#  fonts:
+#    - family: NotoSans
+#      fonts:
+#        - asset: fonts/NotoSans-Regular.ttf

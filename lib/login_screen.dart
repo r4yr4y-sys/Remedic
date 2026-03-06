@@ -6,17 +6,15 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.only(
-              left: size.width * 0.05,
-              right: size.width * 0.05,
-              top: size.height * 0.15,
+              left: 32,
+              right: 32,
+              top: 120,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,20 +22,20 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'Let\'s Sign you in.',
                   style: TextStyle(
-                    fontSize: size.width * 0.08,
+                    fontSize: 36,
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                SizedBox(height: size.height * 0.04),
+                SizedBox(height: 32),
                 Text(
                     'Welcome back\nYou\'ve been missed!',
                     style: TextStyle(
                       color: Colors.grey[500],
-                      fontSize: size.width * 0.06,
+                      fontSize: 28,
                       height: 1.7
                     )
                 ),
-                SizedBox(height: size.height * 0.06),
+                SizedBox(height: 56),
                 Text(
                   " Email",
                   style: TextStyle(
@@ -45,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: size.height * 0.007),
+                SizedBox(height: 8),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
@@ -67,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.02),
+                SizedBox(height: 22),
                 Text(
                   " Password",
                   style: TextStyle(
@@ -75,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: size.height * 0.007),
+                SizedBox(height: 8),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
@@ -98,10 +96,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.23),
+                SizedBox(height: 210),
                 SizedBox(
-                  width: double.infinity,
-                  height: size.height * 0.055,
+                  width: 500,
+                  height: 60,
                   child: ElevatedButton(
                     onPressed: () {
                     },
@@ -121,18 +119,18 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold
                             )
                         ),
-                        SizedBox(width: size.width * 0.008),
+                        SizedBox(width: 6),
                         Icon(Icons.arrow_forward),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.03),
+                SizedBox(height: 32),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      "Don't have an account?  ",
                       style: TextStyle(
                         color: Colors.grey[400],
                       ),
@@ -147,7 +145,7 @@ class LoginScreen extends StatelessWidget {
                         );
                       },
                       child: Text(
-                        "  Sign Up",
+                        "Sign Up",
                         style: TextStyle(
                           fontWeight: FontWeight(600),
                         ),

@@ -6,17 +6,15 @@ class RegistrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.only(
-              left: size.width * 0.05,
-              right: size.width * 0.05,
-              top: size.height * 0.12,
+              left: 32,
+              right: 32,
+              top: 120,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,18 +22,18 @@ class RegistrationScreen extends StatelessWidget {
                 Text(
                   'Create New Account',
                   style: TextStyle(
-                      fontSize: size.width * 0.08,
+                      fontSize: 36,
                       fontWeight: FontWeight.bold
                   ),
                 ),
-                SizedBox(height: size.height * 0.04),
+                SizedBox(height: 38),
                 Text(
                   "Please fill in the required information to create your account. We will need your full name, email address and a secure password",
                   style: TextStyle(
-                    fontSize: size.width * 0.036,
+                    fontSize: 16,
                   ),
                 ),
-                SizedBox(height: size.height * 0.06),
+                SizedBox(height:  64),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
@@ -57,7 +55,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.02),
+                SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
@@ -79,7 +77,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.02),
+                SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
@@ -102,7 +100,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.02),
+                SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
@@ -125,10 +123,10 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.12),
+                SizedBox(height: 120),
                 SizedBox(
-                  width: double.infinity,
-                  height: size.height * 0.055,
+                  width: 380,
+                  height: 60,
                   child: ElevatedButton(
                     onPressed: () {
                     },
@@ -148,18 +146,18 @@ class RegistrationScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold
                             )
                         ),
-                        SizedBox(width: size.width * 0.008),
+                        SizedBox(width: 6),
                         Icon(Icons.arrow_forward),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.03),
+                SizedBox(height: 32),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Already have an account?",
+                      "Already have an account?  ",
                       style: TextStyle(
                         color: Colors.grey[400],
                       ),
@@ -174,7 +172,7 @@ class RegistrationScreen extends StatelessWidget {
                         );
                       },
                       child: Text(
-                        "  Log In",
+                        "Log In",
                         style: TextStyle(
                           fontWeight: FontWeight(600),
                         ),
