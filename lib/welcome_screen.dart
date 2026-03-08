@@ -20,12 +20,24 @@ class WelcomeScreen extends StatelessWidget {
                 top: 28,
                 bottom: 32
               ),
-              child: Text(
-                "Welcome to\nRemedic",
-                style: TextStyle(
-                  fontSize: 42,
-                ),
-                textAlign: TextAlign.center,
+              child: Column(
+                children: [
+                  Text(
+                    "Welcome to",
+                    style: TextStyle(
+                      fontSize: 38,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "Remedic",
+                    style: TextStyle(
+                      fontSize: 42,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
             Container(

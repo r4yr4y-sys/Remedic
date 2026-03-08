@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'app/home_screen.dart';
 import 'app/history_screen.dart';
-import 'app/add_reminder.dart';
+import 'app/ongoing_medications.dart';
 import 'app/settings_screen.dart';
 import 'app/profile_screen.dart';
 
@@ -21,7 +21,7 @@ class _AppNavigatorState extends State<AppNavigator> {
     HistoryScreen(),
     SettingsScreen(),
     ProfileScreen(),
-    AddReminderScreen(),
+    OngoingMedications(),
   ];
 
   @override
