@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+enum MedicineState {
+  taken,
+  missed,
+  upcoming,
+}
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -14,28 +19,25 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Column(
-            children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child:
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
                 SizedBox(
-
-                  width: 200,
-                  height: 100,
+                  height: 150,
+                  width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black, // Change Button Color
-                      foregroundColor: Colors.white,       // Change Text Color
-                      side: const BorderSide(              // Add Border
-                        color: Colors.white,
-                        width: 2,
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      side: const BorderSide(
+                        color: Colors.grey,
+                        width: 1,
                       ),
-                      shape: RoundedRectangleBorder(       // Control Roundness
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    onPressed: () {showDialog(
+                    onPressed: () { showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
@@ -47,19 +49,19 @@ class HomeScreen extends StatelessWidget {
                               ListTile(
                                 leading: Icon(Icons.medication),
                                 title: Text("Paracetamol"),
-                                subtitle: Text("@2pm 1 capsule"),
+                                subtitle: Text("@2pm 1 capsule \n Status:Taken"),
                               ),
 
                               ListTile(
                                 leading: Icon(Icons.medication),
                                 title: Text("Seclo20"),
-                                subtitle: Text("@5pm 2 capsule"),
+                                subtitle: Text("@5pm 2 capsule \n Status:Missed"),
                               ),
 
                               ListTile(
                                 leading: Icon(Icons.medication),
                                 title: Text("Kolikata Herbal Tablet"),
-                                subtitle: Text("@7pm 3 capsule"),
+                                subtitle: Text("@7pm 3 capsule \n Status:Upcoming"),
                               ),
 
                             ],
@@ -75,175 +77,284 @@ class HomeScreen extends StatelessWidget {
                         );
                       },
                     );},
-                    child: const Text("Today's Medication",textAlign: TextAlign.left,),
-                  ),
-                ),
-                ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Today's medication",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 15),
 
-
-
-
-
-              const SizedBox(height: 20),
-        Align(
-          alignment: Alignment.centerLeft,
-              child:
-              SizedBox(
-
-                width: 200,
-                height: 100,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black, // Change Button Color
-                    foregroundColor: Colors.white,       // Change Text Color
-                    side: const BorderSide(              // Add Border
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    shape: RoundedRectangleBorder(       // Control Roundness
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  onPressed: () {
-                    /*showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const AlertDialog(
-                        title: Text("Medicines of your active medication"),
-                        content:  Text("You have no active medications" ),
-                      );
-                    },
-                  );*/ //Eita dibo kono medications na thakle
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text("Your Cabinet"),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
                             children: const [
 
-                              ListTile(
-                                leading: const Icon(Icons.medication_rounded, color: Colors.black),
-                                title: const Text(
-                                  "Paracetamol",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
-                                ),
-                                subtitle: const Text("Stock: 48/ 60",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold )),
-                                trailing: const Icon(Icons.info),
-                                tileColor: Colors.lightGreenAccent
-
+                              QuickView(
+                                medicine: "Paracetamol",
+                                schedule: "@2pm 1 capsule",
+                                state: MedicineState.taken,
                               ),
 
-                              ListTile(
-                                leading: const Icon(Icons.medication_liquid, color: Colors.black),
-                                title: const Text(
-                                  "Monas40",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
-                                ),
-                                subtitle: const Text("Stock: 35/ 60",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold )),
-                                trailing: const Icon(Icons.info),
-                                tileColor: Colors.amberAccent,
+
+
+                              SizedBox(width: 12),
+
+                              QuickView(
+                                medicine: "Seclo20",
+                                schedule: "@5pm 2 capsule",
+                                state: MedicineState.missed,
                               ),
 
-                              ListTile(
-                                leading: const Icon(Icons.medical_information_outlined, color: Colors.black),
-                                title: const Text(
-                                  "Maxpro40",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
-                                ),
-                                subtitle: const Text("Stock: 10 / 60",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold )),
-                                trailing: const Icon(Icons.info),
-                                tileColor: Colors.redAccent,
+                              SizedBox(width: 12),
+
+                              QuickView(
+                                medicine: "Kolikata Herbal Tablet",
+                                schedule: "@7pm 7 capsule",
+                                state: MedicineState.upcoming,
                               ),
-/*AlertDialog(
-  title: const Text("Your Cabinet"),
-  content: Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
 
-      // Paracetamol Card
-      Container(
-        margin: const EdgeInsets.symmetric(vertical: 6),
-        decoration: BoxDecoration(
-          color: Colors.lightGreenAccent,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: const ListTile(
-          leading: Icon(Icons.medication_rounded, color: Colors.black),
-          title: Text(
-            "Paracetamol",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
-          ),
-          subtitle: Text("Stock: 48 / 60", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-          trailing: Icon(Icons.info),
-        ),
-      ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
 
-      // Repeat similar Container for other medicines...
+                SizedBox(
+                  height: 150,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        side: const BorderSide(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      onPressed: (){showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text("Today's Medication"),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                DecoratedBox( decoration: BoxDecoration(
 
-    ],
-  ),
-) LIST TITLE ER EDGE ROUND KORTE CHAISILAM oSTRO LIST TILE ER JAYGAY EITA DITE BOLTESE .....BHUJTESI NA */
-                              ListTile(
-                                leading: const Icon(Icons.medication_sharp, color: Colors.white),
-                                title: const Text(
-                                  "finished medicine",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                  color: Color.fromRGBO(101, 138, 92, .3),
+
+
                                 ),
-                                subtitle: const Text("Stock: 0 / 60",style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold )),
-                                trailing: const Icon(Icons.info),
-                                tileColor: Colors.black38,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child:ListTile(
+                                    leading: Icon(Icons.medication),
+                                    title: Text("Paracetamol"),
+                                    subtitle: Text("Stock 50/60"),
+                                  ), ),),
+                                DecoratedBox( decoration: BoxDecoration(
+
+                                  color: Color.fromRGBO(214, 206, 137, .3),
+
+
+                                ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child:ListTile(
+                                      leading: Icon(Icons.medication),
+                                      title: Text("Seclo 20"),
+                                      subtitle: Text("Stock 30/60"),
+                                    ), ),),
+                                DecoratedBox( decoration: BoxDecoration(
+
+                                  color: Color.fromRGBO(143, 96, 96, .3),
+
+
+                                ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child:ListTile(
+                                      leading: Icon(Icons.medication),
+                                      title: Text("Herbal"),
+                                      subtitle: Text("Stock 10/60"),
+                                    ), ),),
+                                DecoratedBox( decoration: BoxDecoration(
+
+                                  color: Color.fromRGBO(143, 96, 96, .3),
+
+
+                                ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child:ListTile(
+                                  leading: Icon(Icons.medication),
+                                  title: Text("Amlivo 2.5"),
+                                  subtitle: Text("Stock 20/60"),
+                                ), ),)
+
+
+
+
+                              ],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Close"),
+                              )
+                            ],
+                          );
+                        },
+                      );},
+                    child: Column(
+                      children: [
+                        const Text("Your Medicine Cabinet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                        const SizedBox(height: 15,),
+
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: const [
+
+                              QuickViewCabinet(
+                                medicine: "Paracetamol",
+                                total: 60,
+                                left: 50,
+                              ),
+
+
+
+                              SizedBox(width: 12),
+
+                              QuickViewCabinet(
+                                medicine: "Seclo20",
+                                total: 60,
+                                left: 30,
+                              ),
+
+                              SizedBox(width: 12),
+
+                              QuickViewCabinet(
+                                medicine: "Kolikata Herbal Tablet",
+                                  total: 60, left: 10,
+                              ),
+                              SizedBox(width: 12),
+
+                              QuickViewCabinet(
+                                medicine: "Amlivo 2.5",
+                                total: 60, left: 20,
                               ),
                             ],
                           ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Close"),
-                            )
-                          ],
-                        );
-                      },
-                    );
-                    },
-                  child: const Text("Medicine Cabinet",textAlign: TextAlign.left,selectionColor: Colors.white,),
-                ),
-              ),
-        ),
+                        ),
 
-              const SizedBox(height: 20),
-        Align(
-          alignment: Alignment.centerLeft,
-          child:
-              SizedBox(
 
-                width: 200,
-                height: 100,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black, // Change Button Color
-                    foregroundColor: Colors.white,       // Change Text Color
-                    side: const BorderSide(              // Add Border
-                      color: Colors.white,
-                      width: 2,
+                      ]
                     ),
-                    shape: RoundedRectangleBorder(       // Control Roundness
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text("add something here",textAlign: TextAlign.left,),
+
                 ),
-              ),
-        ),
-
-
-
-            ],
+                )
+              ],
+            ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class QuickView extends StatelessWidget {
+  final String medicine;
+  final String schedule;
+  final IconData icon;
+  final MedicineState state;
+
+  const QuickView({
+    super.key,
+    required this.medicine,
+    required this.schedule,
+    required this.state,
+    this.icon = Icons.medication,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Determine color based on state
+    final Color cardColor = state == MedicineState.taken
+        ? const Color.fromRGBO(101, 138, 92, .4)      // green
+        : state == MedicineState.missed
+        ? const Color.fromRGBO(143, 96, 96, .3)   // red
+        : const Color.fromRGBO(132, 134, 137, .3); // gray (upcoming)
+    return DecoratedBox(
+      decoration: BoxDecoration(
+
+        color: cardColor,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon),
+            Text(medicine),
+            Text(schedule),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class QuickViewCabinet extends StatelessWidget {
+  final String medicine;
+  final int total;
+  final int left;
+  final IconData icon;
+
+
+  const QuickViewCabinet ({
+    super.key,
+    required this.medicine,
+    required this.total,
+    required this.left,
+
+    this.icon = Icons.medication,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final double ratio = left / total;
+    // Determine color based on state
+    final Color cardColor =
+    ratio >= 0.75 ? const Color.fromRGBO(101, 138, 92, .4) :  // green
+    ratio >= 0.4  ? const Color.fromRGBO(214, 206, 137, .3) : // yellow
+    const Color.fromRGBO(143, 96, 96, .3);   // red
+    return DecoratedBox(
+      decoration: BoxDecoration(
+
+        color: cardColor,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon),
+            Text(medicine),
+            Text("Stock $left/$total"),
+          ],
         ),
       ),
     );
