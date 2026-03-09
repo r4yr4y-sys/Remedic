@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'app/home_screen.dart';
 import 'app/history_screen.dart';
-import 'app/add_reminder.dart';
+import 'app/ongoing_medications.dart';
 import 'app/settings_screen.dart';
 import 'app/profile_screen.dart';
 
@@ -21,7 +21,7 @@ class _AppNavigatorState extends State<AppNavigator> {
     HistoryScreen(),
     SettingsScreen(),
     ProfileScreen(),
-    AddReminderScreen(),
+    OngoingMedications(),
   ];
 
   @override
@@ -136,8 +136,8 @@ class _AppNavigatorState extends State<AppNavigator> {
                   },
                   borderRadius: BorderRadius.circular(15),
                   child: Container(
-                    height: 67,
-                    width: 67,
+                    height: 60,
+                    width: 70,
                     margin: const EdgeInsetsGeometry.directional(start: 3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
