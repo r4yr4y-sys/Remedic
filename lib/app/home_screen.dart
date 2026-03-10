@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
           ),
 
         ),
-    ],
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -215,31 +215,31 @@ class HomeScreen extends StatelessWidget {
                   height: 150,
                   width: double.infinity,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        side: const BorderSide(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      side: const BorderSide(
+                        color: Colors.grey,
+                        width: 1,
                       ),
-                      onPressed: (){showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text("Today's Medication"),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                DecoratedBox( decoration: BoxDecoration(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    onPressed: (){showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("Today's Medication"),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              DecoratedBox( decoration: BoxDecoration(
 
-                                  color: Color.fromRGBO(101, 138, 92, .3),
+                                color: Color.fromRGBO(101, 138, 92, .3),
 
 
-                                ),
+                              ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(10),
                                   child:ListTile(
@@ -247,115 +247,115 @@ class HomeScreen extends StatelessWidget {
                                     title: Text("Paracetamol"),
                                     subtitle: Text("Stock 50/60"),
                                   ), ),),
-                                DecoratedBox( decoration: BoxDecoration(
+                              DecoratedBox( decoration: BoxDecoration(
 
-                                  color: Color.fromRGBO(214, 206, 137, .3),
-
-
-                                ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child:ListTile(
-                                      leading: Icon(Icons.medication),
-                                      title: Text("Seclo 20"),
-                                      subtitle: Text("Stock 30/60"),
-                                    ), ),),
-                                DecoratedBox( decoration: BoxDecoration(
-
-                                  color: Color.fromRGBO(143, 96, 96, .3),
+                                color: Color.fromRGBO(214, 206, 137, .3),
 
 
-                                ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child:ListTile(
-                                      leading: Icon(Icons.medication),
-                                      title: Text("Herbal"),
-                                      subtitle: Text("Stock 10/60"),
-                                    ), ),),
-                                DecoratedBox( decoration: BoxDecoration(
-
-                                  color: Color.fromRGBO(143, 96, 96, .3),
-
-
-                                ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child:ListTile(
-                                  leading: Icon(Icons.medication),
-                                  title: Text("Amlivo 2.5"),
-                                  subtitle: Text("Stock 20/60"),
-                                ), ),)
-
-
-
-
-                              ],
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Close"),
-                              )
-                            ],
-                          );
-                        },
-                      );},
-                    child: Column(
-                      children: [
-                        const Text("Your Medicine Cabinet",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-                        const SizedBox(height: 15,),
-
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: const [
-
-                              QuickViewCabinet(
-                                medicine: "Paracetamol",
-                                total: 60,
-                                left: 50,
                               ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child:ListTile(
+                                    leading: Icon(Icons.medication),
+                                    title: Text("Seclo 20"),
+                                    subtitle: Text("Stock 30/60"),
+                                  ), ),),
+                              DecoratedBox( decoration: BoxDecoration(
+
+                                color: Color.fromRGBO(143, 96, 96, .3),
 
 
-
-                              SizedBox(width: 12),
-
-                              QuickViewCabinet(
-                                medicine: "Seclo20",
-                                total: 60,
-                                left: 30,
                               ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child:ListTile(
+                                    leading: Icon(Icons.medication),
+                                    title: Text("Herbal"),
+                                    subtitle: Text("Stock 10/60"),
+                                  ), ),),
+                              DecoratedBox( decoration: BoxDecoration(
 
-                              SizedBox(width: 12),
+                                color: Color.fromRGBO(143, 96, 96, .3),
 
-                              QuickViewCabinet(
-                                medicine: "Kolikata Herbal Tablet",
-                                  total: 60, left: 50,
+
                               ),
-                              SizedBox(width: 12),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child:ListTile(
+                                    leading: Icon(Icons.medication),
+                                    title: Text("Amlivo 2.5"),
+                                    subtitle: Text("Stock 20/60"),
+                                  ), ),)
 
-                              QuickViewCabinet(
-                                medicine: "Amlivo 2.5",
-                                total: 60, left: 20,
-                              ),
-                              SizedBox(width: 12),
 
-                              QuickViewCabinet(
-                                medicine: "Imran Dih pills",
-                                total: 360, left: 300,
-                              ),
+
+
                             ],
                           ),
-                        ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Close"),
+                            )
+                          ],
+                        );
+                      },
+                    );},
+                    child: Column(
+                        children: [
+                          const Text("Your Medicine Cabinet",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+                          const SizedBox(height: 15,),
+
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: const [
+
+                                QuickViewCabinet(
+                                  medicine: "Paracetamol",
+                                  total: 60,
+                                  left: 50,
+                                ),
 
 
-                      ]
+
+                                SizedBox(width: 12),
+
+                                QuickViewCabinet(
+                                  medicine: "Seclo20",
+                                  total: 60,
+                                  left: 30,
+                                ),
+
+                                SizedBox(width: 12),
+
+                                QuickViewCabinet(
+                                  medicine: "Kolikata Herbal Tablet",
+                                  total: 60, left: 50,
+                                ),
+                                SizedBox(width: 12),
+
+                                QuickViewCabinet(
+                                  medicine: "Amlivo 2.5",
+                                  total: 60, left: 20,
+                                ),
+                                SizedBox(width: 12),
+
+                                QuickViewCabinet(
+                                  medicine: "Imran Dih pills",
+                                  total: 360, left: 300,
+                                ),
+                              ],
+                            ),
+                          ),
+
+
+                        ]
                     ),
 
-                ),
+                  ),
                 )
               ],
             ),
