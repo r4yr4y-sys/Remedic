@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'history_screen.dart';
 
 enum MedicineState {
   taken,
@@ -15,13 +16,99 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         centerTitle: true,
         title: const Text("Home"),
+        actions: [ Container(
+
+          margin: EdgeInsets.only(right: 25),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.grey[900],
+          ),
+          child: IconButton(
+            icon: const Icon(
+              Icons.notification_add,
+              size: 18,
+              color: Colors.white,
+              weight: 10,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HistoryScreen(),
+                ),
+              );
+            },
+
+          ),
+
+        ),
+    ],
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 20),
+
+                const Text(
+                  "Your Adherence History",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+
+                const SizedBox(height: 10),
+
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Column(
+                        children: const [
+                          SizedBox(height: 24),
+                          Text("Sun"),
+                          SizedBox(height: 3),
+                          Text("Mon"),
+                          SizedBox(height: 3),
+                          Text("Tue"),
+                          SizedBox(height: 3),
+                          Text("Wed"),
+                          SizedBox(height: 3),
+                          Text("Thu"),
+                          SizedBox(height: 1),
+                          Text("Fri"),
+                          SizedBox(height: 0),
+                          Text("Sat"),
+                        ],
+                      ),
+
+                      const SizedBox(width: 10),
+
+                      const Expanded(
+                        child: AdherenceHeatmap(),
+                      ),
+
+                    ],
+                  ),
+                ),
+
+
+
+
+
+
+                const SizedBox(height: 20),
+
+
+
                 SizedBox(
                   height: 150,
                   width: double.infinity,
@@ -82,7 +169,7 @@ class HomeScreen extends StatelessWidget {
                         const Text(
                           "Today's medication",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 15),
 
@@ -218,7 +305,7 @@ class HomeScreen extends StatelessWidget {
                       );},
                     child: Column(
                       children: [
-                        const Text("Your Medicine Cabinet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                        const Text("Your Medicine Cabinet",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
                         const SizedBox(height: 15,),
 
                         SingleChildScrollView(
@@ -246,13 +333,19 @@ class HomeScreen extends StatelessWidget {
 
                               QuickViewCabinet(
                                 medicine: "Kolikata Herbal Tablet",
-                                  total: 60, left: 10,
+                                  total: 60, left: 50,
                               ),
                               SizedBox(width: 12),
 
                               QuickViewCabinet(
                                 medicine: "Amlivo 2.5",
                                 total: 60, left: 20,
+                              ),
+                              SizedBox(width: 12),
+
+                              QuickViewCabinet(
+                                medicine: "Imran Dih pills",
+                                total: 360, left: 300,
                               ),
                             ],
                           ),
@@ -356,6 +449,105 @@ class QuickViewCabinet extends StatelessWidget {
             Text("Stock $left/$total"),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AdherenceHeatmap extends StatelessWidget {
+  const AdherenceHeatmap({super.key});
+
+  Color getColor(int value) {
+    switch (value) {
+      case 3:
+        return const Color.fromRGBO(101, 138, 92, .4); // good
+      case 2:
+        return const Color.fromRGBO(214, 206, 137, .3); // warning
+      case 1:
+        return const Color.fromRGBO(143, 96, 96, .3); // bad
+      default:
+        return const Color.fromRGBO(132, 134, 137, .3); // none
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    /// Dummy data (365 days)
+    final List<int> activity =
+    List.generate(420, (index) => (index * 7 + 3) % 4);
+
+
+    final List<String> months = [
+      "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
+    ];
+
+    const double boxSize = 16;
+    const double spacing = 5;
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          /// MONTH LABELS
+          Row(
+            children: months.map((m) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 85),
+                child: Text(
+                  m,
+                  style: const TextStyle(fontSize: 14),
+                ),
+              );
+            }).toList(),
+          ),
+
+          const SizedBox(height: 8),
+
+          /// HEATMAP GRID
+          SizedBox(
+            height: (boxSize + spacing) * 7,
+            child: GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 7,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
+              ),
+              itemCount: activity.length,
+              itemBuilder: (context, index) {
+
+                final value = activity[index];
+
+                return GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          "Day ${index + 1} adherence: $value",
+
+                        ),
+                        duration: const Duration(milliseconds: 75),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: boxSize,
+                    height: boxSize,
+                    decoration: BoxDecoration(
+                      color: getColor(value),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

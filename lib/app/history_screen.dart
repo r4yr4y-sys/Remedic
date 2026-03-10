@@ -7,6 +7,39 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text(
+          "History",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.left,
+        ),
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 25),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey[900],
+            ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.notification_add,
+                size: 18,
+                color: Colors.white,
+                weight: 10,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HistoryScreen(),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
 
       body: SafeArea(
         child: Padding(
@@ -14,16 +47,6 @@ class HistoryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              Text(
-                "History",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
               SizedBox(height: 20),
 
               SizedBox(
@@ -57,12 +80,9 @@ class HistoryScreen extends StatelessWidget {
 
               Expanded(
                 child: ListView(
-                  children: List.generate(
-                    8,
-                        (index) => activityItem(),
-                  ),
+                  children: List.generate(8, (index) => activityItem()),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -84,9 +104,7 @@ class HistoryScreen extends StatelessWidget {
         children: [
           Text(
             day,
-            style: TextStyle(
-              color: selected ? Colors.black : Colors.grey,
-            ),
+            style: TextStyle(color: selected ? Colors.black : Colors.grey),
           ),
           Text(
             date,
