@@ -468,13 +468,13 @@ class AdherenceHeatmap extends StatelessWidget {
   Color getColor(int value) {
     switch (value) {
       case 3:
-        return const Color.fromRGBO(101, 138, 92, .4); // good
+        return const Color.fromRGBO(57, 255, 20, .6); // good
       case 2:
-        return const Color.fromRGBO(214, 206, 137, .3); // warning
+        return const Color.fromRGBO(255, 255, 0, .7); // warning
       case 1:
-        return const Color.fromRGBO(143, 96, 96, .3); // bad
+        return const Color.fromRGBO(255, 49, 49, .3); // bad
       default:
-        return const Color.fromRGBO(132, 134, 137, .3); // none
+        return const Color.fromRGBO(45, 134, 137, .3); // none
     }
   }
 
@@ -551,7 +551,7 @@ class AdherenceHeatmap extends StatelessWidget {
                     height: boxSize,
                     decoration: BoxDecoration(
                       color: getColor(value),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(2),
                     ),
                   ),
                 );
