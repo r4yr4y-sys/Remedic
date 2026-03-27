@@ -5,7 +5,13 @@ import 'features/auth/presentation/screens/login_screen.dart';
 import 'features/splash/presentation/splash_screen.dart';
 import 'features/navigator/presentation/app_navigator.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(RemedicApp());
 }
 
@@ -25,10 +31,10 @@ class RemedicApp extends StatelessWidget {
 
       initialRoute: '/',
       routes: {
-        '/': (context) => const AppNavigator(),   // SplashScreen()
+        '/': (context) => const SplashScreen(), // SplashScreen()
         '/register': (context) => const RegistrationScreen(),
         '/login': (context) => const LoginScreen(),
-        //'/app': (context) => const AppNavigator(),
+        '/app': (context) => const AppNavigator(),
       },
     );
   }

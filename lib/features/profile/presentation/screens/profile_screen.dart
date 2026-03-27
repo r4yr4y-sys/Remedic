@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:remedic/core/services/auth_service.dart';
+import 'package:remedic/features/auth/presentation/screens/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+
+  final _authService = AuthService();
+
+  Future<void> _logout(BuildContext context) async {
+    await _authService.signOut();
+    if (!context.mounted) return;
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
+      (route) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final user = _authService.currentUser;
+    final displayName = user?.displayName ?? 'User';
+    final email = user?.email ?? '';
+    final initials = displayName.isNotEmpty
+        ? displayName.split('').take(3).join('').toUpperCase()
+        : 'U';
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-
             SizedBox(height: 30),
 
             Stack(
@@ -19,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                   radius: 60,
                   backgroundColor: Colors.grey[900],
                   child: Text(
-                    "BRS",
+                    initials,
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                 ),
@@ -27,40 +47,27 @@ class ProfileScreen extends StatelessWidget {
                 CircleAvatar(
                   radius: 16,
                   backgroundColor: Colors.white,
-                  child: Icon(
-                    Icons.camera_alt,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                )
+                  child: Icon(Icons.camera_alt, size: 18, color: Colors.black),
+                ),
               ],
             ),
 
             SizedBox(height: 20),
 
             Text(
-              "B.M. Raihan Saleh",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+              displayName,
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
 
             SizedBox(height: 5),
 
-            Text(
-              "rainhan_saleh@remedic.health",
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-            ),
+            Text(email, style: TextStyle(color: Colors.grey)),
 
             SizedBox(height: 40),
 
             Expanded(
               child: ListView(
                 children: [
-
                   ListTile(
                     leading: Icon(Icons.person_outline),
                     title: Text("Edit Profile"),
@@ -89,10 +96,8 @@ class ProfileScreen extends StatelessWidget {
 
                   ListTile(
                     leading: Icon(Icons.logout, color: Colors.red),
-                    title: Text(
-                      "Logout",
-                      style: TextStyle(color: Colors.red),
-                    ),
+                    title: Text("Logout", style: TextStyle(color: Colors.red)),
+                    onTap: () => _logout(context),
                   ),
                 ],
               ),
