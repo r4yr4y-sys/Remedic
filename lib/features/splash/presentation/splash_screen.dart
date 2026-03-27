@@ -42,14 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           children: [
             const Spacer(),
-            Center(child: Image.asset('assets/welcome.png', width: 280)),
+            Center(child: Image.asset('assets/logo.png', width: 500)),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.only(bottom: 60),
               child: Text(
                 'Remedic',
                 style: TextStyle(
-                  fontSize: 35,
+                  fontSize: 40,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                   letterSpacing: 1.2,
