@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomSelector extends StatefulWidget {
-  const CustomSelector({super.key});
+class MedicineType extends StatefulWidget {
+  const MedicineType({super.key});
 
   @override
-  State<CustomSelector> createState() => _CustomSelectorState();
+  State<MedicineType> createState() => _MedicineTypeState();
 }
 
-class _CustomSelectorState extends State<CustomSelector> {
+class _MedicineTypeState extends State<MedicineType> {
   int selectedIndex = -1;
 
   void selectOption(int index) {
@@ -63,7 +63,7 @@ class _CustomSelectorState extends State<CustomSelector> {
                 width: 110,
                 height: 100,
                 margin: EdgeInsets.only(left: 12),
-                padding: EdgeInsets.all(18),
+                padding: EdgeInsets.all(17),
                 decoration: BoxDecoration(
                   color: selectedIndex == 1 ? Colors.white : Colors.grey[700],
                   borderRadius: BorderRadius.circular(12),
@@ -71,9 +71,9 @@ class _CustomSelectorState extends State<CustomSelector> {
                 child: Column(
                   spacing: 10,
                   children: [
-                    Icon(
-                      FontAwesomeIcons.capsules,
-                      size: 32,
+                    Image.asset(
+                      'assets/capsule.png',
+                      scale: 15,
                       color: selectedIndex == 1 ? Colors.black : Colors.white,
                     ),
                     Text("Capsule",

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'registration_screen.dart';
-import 'login_screen.dart';
+import 'package:remedic/core/theme/colors.dart';
+import '../../../auth/presentation/screens/registration_screen.dart';
+import '../../../auth/presentation/screens/login_screen.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class OnboardingScreen extends StatelessWidget {
+  const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,28 +14,20 @@ class WelcomeScreen extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsetsGeometry.directional(top: 20),
-              child: Image.asset("assets/welcome.png")
+              child: Image.asset("assets/welcome.png"),
             ),
             Container(
-              margin: EdgeInsetsGeometry.directional(
-                top: 28,
-                bottom: 32
-              ),
+              margin: EdgeInsetsGeometry.directional(top: 28, bottom: 32),
               child: Column(
                 children: [
                   Text(
                     "Welcome to",
-                    style: TextStyle(
-                      fontSize: 38,
-                    ),
+                    style: TextStyle(fontSize: 38, color: AppColors.heading),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     "Remedic",
-                    style: TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: AppColors.heading),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -48,11 +41,9 @@ class WelcomeScreen extends StatelessWidget {
               ),
               child: Text(
                 "Stay on track with your medications, every day. Remedic reminds you when it’s time for your medicine, keeps track of your supplies, and helps you manage your complete medical history — all in one place.",
-                style: TextStyle(
-                  fontSize: 16,
-                ),
+                style: TextStyle(fontSize: 16, color: AppColors.textPrimary),
                 textAlign: TextAlign.center,
-              )
+              ),
             ),
 
             Padding(
@@ -73,16 +64,13 @@ class WelcomeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black,
+                        backgroundColor: AppColors.buttonPrimary,
+                        foregroundColor: AppColors.buttonPrimaryText,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      child: Text("Login", style: TextStyle(fontSize: 16)),
                     ),
                   ),
 
@@ -101,16 +89,13 @@ class WelcomeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0x66666666),
-                        foregroundColor: Color(0xEFEFEFEF),
+                        backgroundColor: AppColors.buttonSecondary,
+                        foregroundColor: AppColors.buttonSecondaryText,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: Text(
-                        "Register",
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      child: Text("Register", style: TextStyle(fontSize: 16)),
                     ),
                   ),
                 ],

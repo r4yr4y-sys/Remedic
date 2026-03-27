@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'app/home_screen.dart';
-import 'app/history_screen.dart';
-import 'app/ongoing_medications.dart';
-import 'app/settings_screen.dart';
-import 'app/profile_screen.dart';
+import 'package:remedic/core/theme/colors.dart';
+import '../../home/presentation/screens/home_screen.dart';
+import '../../history/presentation/screens/history_screen.dart';
+import '../../medication/presentation/screens/ongoing_medications.dart';
+import '../../settings/presentation/screens/settings_screen.dart';
+import '../../profile/presentation/screens/profile_screen.dart';
 
 class AppNavigator extends StatefulWidget {
   const AppNavigator({super.key});
@@ -27,9 +28,7 @@ class _AppNavigatorState extends State<AppNavigator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child:
-        _screens[_selectedIndex],
-      ),
+      body: SafeArea(child: _screens[_selectedIndex]),
       bottomNavigationBar: SafeArea(
         child: SizedBox(
           height: 100,
@@ -53,13 +52,17 @@ class _AppNavigatorState extends State<AppNavigator> {
                       child: Container(
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                          color: _selectedIndex == 0 ? Colors.white : const Color(0x31A8A8A8),
+                          color: _selectedIndex == 0
+                              ? AppColors.iconActiveBackground
+                              : AppColors.iconInactiveBackground,
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Icon(
                           FontAwesomeIcons.solidHouse,
-                          color: _selectedIndex == 0 ? Colors.black : Colors.grey,
-                          size: 30
+                          color: _selectedIndex == 0
+                              ? AppColors.iconActive
+                              : AppColors.iconInactive,
+                          size: 30,
                         ),
                       ),
                     ),
@@ -73,13 +76,17 @@ class _AppNavigatorState extends State<AppNavigator> {
                       child: Container(
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                          color: _selectedIndex == 1 ? Colors.white : const Color(0x31A8A8A8),
+                          color: _selectedIndex == 1
+                              ? AppColors.iconActiveBackground
+                              : AppColors.iconInactiveBackground,
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Icon(
                           Icons.article_rounded,
-                          color: _selectedIndex == 1 ? Colors.black : Colors.grey,
-                          size: 32
+                          color: _selectedIndex == 1
+                              ? AppColors.iconActive
+                              : AppColors.iconInactive,
+                          size: 32,
                         ),
                       ),
                     ),
@@ -94,13 +101,17 @@ class _AppNavigatorState extends State<AppNavigator> {
                       child: Container(
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                          color: _selectedIndex == 2 ? Colors.white : const Color(0x31A8A8A8),
+                          color: _selectedIndex == 2
+                              ? AppColors.iconActiveBackground
+                              : AppColors.iconInactiveBackground,
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Icon(
                           FontAwesomeIcons.sliders,
-                          color: _selectedIndex == 2 ? Colors.black : Colors.grey,
-                          size: 30
+                          color: _selectedIndex == 2
+                              ? AppColors.iconActive
+                              : AppColors.iconInactive,
+                          size: 30,
                         ),
                       ),
                     ),
@@ -114,13 +125,17 @@ class _AppNavigatorState extends State<AppNavigator> {
                       child: Container(
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                          color: _selectedIndex == 3 ? Colors.white : const Color(0x31A8A8A8),
+                          color: _selectedIndex == 3
+                              ? AppColors.iconActiveBackground
+                              : AppColors.iconInactiveBackground,
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Icon(
                           FontAwesomeIcons.solidCircleUser,
-                          color: _selectedIndex == 3 ? Colors.black : Colors.grey,
-                          size: 30
+                          color: _selectedIndex == 3
+                              ? AppColors.iconActive
+                              : AppColors.iconInactive,
+                          size: 30,
                         ),
                       ),
                     ),
@@ -141,12 +156,16 @@ class _AppNavigatorState extends State<AppNavigator> {
                     margin: const EdgeInsetsGeometry.directional(start: 3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: _selectedIndex == 4 ? Colors.white : const Color(0x31A8A8A8),
+                      color: _selectedIndex == 4
+                          ? AppColors.iconActiveBackground
+                          : AppColors.iconInactiveBackground,
                     ),
                     child: Icon(
                       Icons.add,
                       size: 35,
-                      color: _selectedIndex == 4 ? Colors.black : Colors.grey,
+                      color: _selectedIndex == 4
+                          ? AppColors.iconActive
+                          : AppColors.iconInactive,
                     ),
                   ),
                 ),

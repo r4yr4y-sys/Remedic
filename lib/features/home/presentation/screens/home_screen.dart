@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'history_screen.dart';
+import 'package:remedic/core/theme/colors.dart';
+import '../../../../features/history/presentation/screens/history_screen.dart';
 
-enum MedicineState {
-  taken,
-  missed,
-  upcoming,
-}
+enum MedicineState { taken, missed, upcoming }
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -34,13 +32,12 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hello!",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[500],
-                      ),
+                    Text(
+                      "Hello!",
+                      style: TextStyle(fontSize: 14, color: Colors.grey[500]),
                     ),
-                    Text("Jayed Raihan",
+                    Text(
+                      "Jayed Raihan",
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -67,9 +64,7 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => HistoryScreen(),
-                      )
+                      MaterialPageRoute(builder: (context) => HistoryScreen()),
                     );
                   },
                 ),
@@ -77,7 +72,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        ),
+      ),
 
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 10),
@@ -89,62 +84,68 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    side: const BorderSide(
-                      color: Colors.grey,
-                      width: 1,
-                    ),
+                    backgroundColor: AppColors.card,
+                    foregroundColor: AppColors.textPrimary,
+                    side: const BorderSide(color: Colors.grey, width: 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () { showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text("Today's Medication"),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: AppColors.background,
+                          title: const Text("Today's Medication"),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              ListTile(
+                                leading: Icon(Icons.medication),
+                                title: Text("Paracetamol"),
+                                subtitle: Text(
+                                  "@2pm 1 capsule \n Status:Taken",
+                                ),
+                              ),
 
-                            ListTile(
-                              leading: Icon(Icons.medication),
-                              title: Text("Paracetamol"),
-                              subtitle: Text("@2pm 1 capsule \n Status:Taken"),
+                              ListTile(
+                                leading: Icon(Icons.medication),
+                                title: Text("Seclo20"),
+                                subtitle: Text(
+                                  "@5pm 2 capsule \n Status:Missed",
+                                ),
+                              ),
+
+                              ListTile(
+                                leading: Icon(Icons.medication),
+                                title: Text("Kolikata Herbal Tablet"),
+                                subtitle: Text(
+                                  "@7pm 3 capsule \n Status:Upcoming",
+                                ),
+                              ),
+                            ],
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Close"),
                             ),
-
-                            ListTile(
-                              leading: Icon(Icons.medication),
-                              title: Text("Seclo20"),
-                              subtitle: Text("@5pm 2 capsule \n Status:Missed"),
-                            ),
-
-                            ListTile(
-                              leading: Icon(Icons.medication),
-                              title: Text("Kolikata Herbal Tablet"),
-                              subtitle: Text("@7pm 3 capsule \n Status:Upcoming"),
-                            ),
-
                           ],
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Close"),
-                          )
-                        ],
-                      );
-                    },
-                  );},
+                        );
+                      },
+                    );
+                  },
                   child: Column(
                     children: [
                       const Text(
                         "Today's medication",
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 15),
 
@@ -152,14 +153,11 @@ class HomeScreen extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: const [
-
                             QuickView(
                               medicine: "Paracetamol",
                               schedule: "@2pm 1 capsule",
                               state: MedicineState.taken,
                             ),
-
-
 
                             SizedBox(width: 12),
 
@@ -176,7 +174,6 @@ class HomeScreen extends StatelessWidget {
                               schedule: "@7pm 7 capsule",
                               state: MedicineState.upcoming,
                             ),
-
                           ],
                         ),
                       ),
@@ -190,18 +187,16 @@ class HomeScreen extends StatelessWidget {
                 height: 150,
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
-                      side: const BorderSide(
-                        color: Colors.grey,
-                        width: 1,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.card,
+                    foregroundColor: AppColors.textPrimary,
+                    side: const BorderSide(color: Colors.grey, width: 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    onPressed: (){showDialog(
+                  ),
+                  onPressed: () {
+                    showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
@@ -209,62 +204,58 @@ class HomeScreen extends StatelessWidget {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: const [
-                              DecoratedBox( decoration: BoxDecoration(
-
-                                color: Color.fromRGBO(101, 138, 92, .3),
-
-
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(10),
-                                child:ListTile(
-                                  leading: Icon(Icons.medication),
-                                  title: Text("Paracetamol"),
-                                  subtitle: Text("Stock 50/60"),
-                                ), ),),
-                              DecoratedBox( decoration: BoxDecoration(
-
-                                color: Color.fromRGBO(214, 206, 137, .3),
-
-
-                              ),
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(101, 138, 92, .3),
+                                ),
                                 child: Padding(
                                   padding: EdgeInsets.all(10),
-                                  child:ListTile(
+                                  child: ListTile(
+                                    leading: Icon(Icons.medication),
+                                    title: Text("Paracetamol"),
+                                    subtitle: Text("Stock 50/60"),
+                                  ),
+                                ),
+                              ),
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(214, 206, 137, .3),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: ListTile(
                                     leading: Icon(Icons.medication),
                                     title: Text("Seclo 20"),
                                     subtitle: Text("Stock 30/60"),
-                                  ), ),),
-                              DecoratedBox( decoration: BoxDecoration(
-
-                                color: Color.fromRGBO(143, 96, 96, .3),
-
-
+                                  ),
+                                ),
                               ),
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(143, 96, 96, .3),
+                                ),
                                 child: Padding(
                                   padding: EdgeInsets.all(10),
-                                  child:ListTile(
+                                  child: ListTile(
                                     leading: Icon(Icons.medication),
                                     title: Text("Herbal"),
                                     subtitle: Text("Stock 10/60"),
-                                  ), ),),
-                              DecoratedBox( decoration: BoxDecoration(
-
-                                color: Color.fromRGBO(143, 96, 96, .3),
-
-
+                                  ),
+                                ),
                               ),
-                            child: Padding(
-                              padding: EdgeInsets.all(10),
-                              child:ListTile(
-                                leading: Icon(Icons.medication),
-                                title: Text("Amlivo 2.5"),
-                                subtitle: Text("Stock 20/60"),
-                              ), ),)
-
-
-
-
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(143, 96, 96, .3),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: ListTile(
+                                    leading: Icon(Icons.medication),
+                                    title: Text("Amlivo 2.5"),
+                                    subtitle: Text("Stock 20/60"),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           actions: [
@@ -273,28 +264,32 @@ class HomeScreen extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               child: const Text("Close"),
-                            )
+                            ),
                           ],
                         );
                       },
-                    );},
+                    );
+                  },
                   child: Column(
                     children: [
-                      const Text("Your Medicine Cabinet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                      const SizedBox(height: 15,),
+                      const Text(
+                        "Your Medicine Cabinet",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
 
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: const [
-
                             QuickViewCabinet(
                               medicine: "Paracetamol",
                               total: 60,
                               left: 50,
                             ),
-
-
 
                             SizedBox(width: 12),
 
@@ -308,24 +303,23 @@ class HomeScreen extends StatelessWidget {
 
                             QuickViewCabinet(
                               medicine: "Kolikata Herbal Tablet",
-                                total: 60, left: 10,
+                              total: 60,
+                              left: 10,
                             ),
                             SizedBox(width: 12),
 
                             QuickViewCabinet(
                               medicine: "Amlivo 2.5",
-                              total: 60, left: 20,
+                              total: 60,
+                              left: 20,
                             ),
                           ],
                         ),
                       ),
-
-
-                    ]
+                    ],
                   ),
-
+                ),
               ),
-              )
             ],
           ),
         ),
@@ -352,13 +346,12 @@ class QuickView extends StatelessWidget {
   Widget build(BuildContext context) {
     // Determine color based on state
     final Color cardColor = state == MedicineState.taken
-        ? const Color.fromRGBO(101, 138, 92, .4)      // green
+        ? const Color.fromRGBO(101, 138, 92, .4) // green
         : state == MedicineState.missed
-        ? const Color.fromRGBO(143, 96, 96, .3)   // red
+        ? const Color.fromRGBO(143, 96, 96, .3) // red
         : const Color.fromRGBO(132, 134, 137, .3); // gray (upcoming)
     return DecoratedBox(
       decoration: BoxDecoration(
-
         color: cardColor,
         borderRadius: BorderRadius.circular(15),
       ),
@@ -366,11 +359,7 @@ class QuickView extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon),
-            Text(medicine),
-            Text(schedule),
-          ],
+          children: [Icon(icon), Text(medicine), Text(schedule)],
         ),
       ),
     );
@@ -383,8 +372,7 @@ class QuickViewCabinet extends StatelessWidget {
   final int left;
   final IconData icon;
 
-
-  const QuickViewCabinet ({
+  const QuickViewCabinet({
     super.key,
     required this.medicine,
     required this.total,
@@ -397,13 +385,15 @@ class QuickViewCabinet extends StatelessWidget {
   Widget build(BuildContext context) {
     final double ratio = left / total;
     // Determine color based on state
-    final Color cardColor =
-    ratio >= 0.75 ? const Color.fromRGBO(101, 138, 92, .4) :  // green
-    ratio >= 0.4  ? const Color.fromRGBO(214, 206, 137, .3) : // yellow
-    const Color.fromRGBO(143, 96, 96, .3);   // red
+    final Color cardColor = ratio >= 0.75
+        ? const Color.fromRGBO(101, 138, 92, .4)
+        : // green
+          ratio >= 0.4
+        ? const Color.fromRGBO(214, 206, 137, .3)
+        : // yellow
+          const Color.fromRGBO(143, 96, 96, .3); // red
     return DecoratedBox(
       decoration: BoxDecoration(
-
         color: cardColor,
         borderRadius: BorderRadius.circular(15),
       ),
@@ -411,11 +401,7 @@ class QuickViewCabinet extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon),
-            Text(medicine),
-            Text("Stock $left/$total"),
-          ],
+          children: [Icon(icon), Text(medicine), Text("Stock $left/$total")],
         ),
       ),
     );

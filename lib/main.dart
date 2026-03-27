@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'welcome_screen.dart';
-import 'registration_screen.dart';
-import 'login_screen.dart';
-import 'splash_screen.dart';
-import 'app_navigator.dart';
+import 'package:remedic/core/theme/colors.dart';
+import 'features/auth/presentation/screens/registration_screen.dart';
+import 'features/auth/presentation/screens/login_screen.dart';
+import 'features/splash/presentation/splash_screen.dart';
+import 'features/navigator/presentation/app_navigator.dart';
 
 void main() {
   runApp(RemedicApp());
@@ -19,17 +19,16 @@ class RemedicApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF000000),
+        scaffoldBackgroundColor: AppColors.background,
         useMaterial3: true,
       ),
 
       initialRoute: '/',
       routes: {
-        '/': (context) => const SplashScreen(),
-        '/welcome': (context) => const WelcomeScreen(),
+        '/': (context) => const AppNavigator(),   // SplashScreen()
         '/register': (context) => const RegistrationScreen(),
         '/login': (context) => const LoginScreen(),
-        '/app': (context) => const AppNavigator(),
+        //'/app': (context) => const AppNavigator(),
       },
     );
   }
