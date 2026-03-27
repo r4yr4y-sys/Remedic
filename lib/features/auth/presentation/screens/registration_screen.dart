@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/colors.dart';
-import 'login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:remedic/core/theme/colors.dart';
+import 'package:remedic/core/services/auth_service.dart';
+import 'package:remedic/features/navigator/presentation/app_navigator.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
+  @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +25,11 @@ class RegistrationScreen extends StatelessWidget {
               children: [
                 Text(
                   'Create New Account',
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColors.heading),
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.heading,
+                  ),
                 ),
                 SizedBox(height: 38),
                 Text(
@@ -67,6 +78,7 @@ class RegistrationScreen extends StatelessWidget {
                     border: BoxBorder.all(color: AppColors.border),
                   ),
                   child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -132,7 +144,7 @@ class RegistrationScreen extends StatelessWidget {
                   width: 380,
                   height: 60,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => Placeholder(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.buttonPrimary,
                       foregroundColor: AppColors.buttonPrimaryText,
@@ -162,14 +174,7 @@ class RegistrationScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[400]),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
-                      },
+                      onTap: () => Navigator.pop(context),
                       child: Text(
                         "Log In",
                         style: TextStyle(fontWeight: FontWeight(600)),

@@ -17,12 +17,12 @@ class AppNavigator extends StatefulWidget {
 class _AppNavigatorState extends State<AppNavigator> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    HistoryScreen(),
-    SettingsScreen(),
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const HistoryScreen(),
+    const SettingsScreen(),
     ProfileScreen(),
-    OngoingMedications(),
+    const OngoingMedications(),
   ];
 
   @override
