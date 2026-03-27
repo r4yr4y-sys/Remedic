@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:remedic/modules/custom_selector.dart';
-import 'package:remedic/modules/custom_slider.dart';
-import 'package:remedic/modules/meal_time.dart';
-import 'package:remedic/modules/start_today_widget.dart';
+import '../widgets/medicine_type.dart';
+import '../widgets/custom_slider.dart';
+import '../widgets/meal_time.dart';
+import '../widgets/start_today_widget.dart';
 
 class AddMedicationScreen extends StatefulWidget {
   const AddMedicationScreen({super.key});
@@ -222,7 +222,50 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
               ),
             ],
           ),
-
+          SizedBox(height: 40),
+          MedicineType(),
+          Container(
+            alignment: AlignmentGeometry.topLeft,
+            margin: EdgeInsets.only(top: 65, left: 25),
+            child: Text(
+              "Pills Quantity",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+          ),
+          Container(
+            alignment: AlignmentGeometry.topLeft,
+            margin: EdgeInsets.only(top: 5, left: 25),
+            child: Text(
+              "How many pills do you have to take every dose",
+              style: TextStyle(color: Colors.grey, fontSize: 14),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 24, left: 12, right: 12),
+            decoration: BoxDecoration(
+              color: Colors.grey[800],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: AlignmentGeometry.topLeft,
+                  margin: EdgeInsets.only(top: 16, left: 25),
+                  child: Text(
+                    "Per Dose",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                CustomSlider(
+                  value: afternoonDose,
+                  onChanged: (val) => setState(() => afternoonDose = val),
+                ),
+                MealTime(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

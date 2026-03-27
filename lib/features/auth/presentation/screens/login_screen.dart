@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'registration_screen.dart';
+import 'package:remedic/core/theme/colors.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -23,14 +24,15 @@ class LoginScreen extends StatelessWidget {
                   'Let\'s Sign you in.',
                   style: TextStyle(
                     fontSize: 36,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.heading,
                   ),
                 ),
                 SizedBox(height: 32),
                 Text(
                     'Welcome back\nYou\'ve been missed!',
                     style: TextStyle(
-                      color: Colors.grey[500],
+                      color: AppColors.textMuted,
                       fontSize: 28,
                       height: 1.7
                     )
@@ -39,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   " Email",
                   style: TextStyle(
-                    color: Colors.grey[400],
+                    color: AppColors.textMuted,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -47,20 +49,16 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF121212),
+                    color: AppColors.textField,
                     borderRadius: BorderRadius.circular(12),
+                    border: BoxBorder.all(color: AppColors.border),
                   ),
                   child: TextField(
+                    obscureText: true,
                     decoration: InputDecoration(
-                      hintText: 'Enter Email Address',
-                      hintStyle: TextStyle(
-                        color: Colors.grey[700],
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xFF121212),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none
+                        borderSide: BorderSide.none,
                       ),
                     ),
                   ),
@@ -69,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   " Password",
                   style: TextStyle(
-                    color: Colors.grey[400],
+                    color: AppColors.textMuted,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -77,21 +75,16 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 3),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF121212),
+                    color: AppColors.textField,
                     borderRadius: BorderRadius.circular(12),
+                    border: BoxBorder.all(color: AppColors.border),
                   ),
                   child: TextField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      hintText: 'Enter Password',
-                      hintStyle: TextStyle(
-                        color: Colors.grey[700],
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xFF121212),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
                       ),
                     ),
                   ),
@@ -104,8 +97,8 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF5F5F5),
-                      foregroundColor: Colors.black,
+                      backgroundColor: AppColors.buttonPrimary,
+                      foregroundColor: AppColors.buttonPrimaryText,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)
                       ),
