@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:remedic/core/services/auth_service.dart';
-import 'package:remedic/features/auth/presentation/screens/login_screen.dart';
+import 'package:remedic/features/auth/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});

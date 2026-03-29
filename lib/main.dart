@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:remedic/core/theme/colors.dart';
-import 'features/auth/presentation/screens/registration_screen.dart';
-import 'features/auth/presentation/screens/login_screen.dart';
-import 'features/splash/presentation/splash_screen.dart';
-import 'features/navigator/presentation/app_navigator.dart';
+import 'features/auth/registration_screen.dart';
+import 'features/auth/login_screen.dart';
+import 'features/splash/splash_screen.dart';
+import 'features/navigator/app_navigator.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

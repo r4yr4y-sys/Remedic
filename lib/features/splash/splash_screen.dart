@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:remedic/core/services/auth_service.dart';
-import 'package:remedic/features/onboarding/presentation/screens/onboarding_screen.dart';
-import 'package:remedic/features/navigator/presentation/app_navigator.dart';
+import 'package:remedic/features/onboarding/onboarding_screen.dart';
+import 'package:remedic/features/navigator/app_navigator.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

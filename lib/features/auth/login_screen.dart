@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'registration_screen.dart';
 import 'package:remedic/core/theme/colors.dart';
 import 'package:remedic/core/services/auth_service.dart';
-import 'package:remedic/features/navigator/presentation/app_navigator.dart';
+import 'package:remedic/features/navigator/app_navigator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
