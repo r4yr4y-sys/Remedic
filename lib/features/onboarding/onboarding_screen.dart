@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remedic/core/theme/colors.dart';
-import '../../../auth/presentation/screens/registration_screen.dart';
-import '../../../auth/presentation/screens/login_screen.dart';
+import '../auth/registration_screen.dart';
+import '../auth/login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

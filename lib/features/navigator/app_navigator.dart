@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:remedic/core/theme/colors.dart';
-import '../../home/presentation/screens/home_screen.dart';
-import '../../history/presentation/screens/history_screen.dart';
-import '../../medication/presentation/screens/ongoing_medications.dart';
-import '../../settings/presentation/screens/settings_screen.dart';
-import '../../profile/presentation/screens/profile_screen.dart';
+import '../home/home_screen.dart';
+import '../history/history_screen.dart';
+import '../medication/screens/ongoing_medications.dart';
+import '../settings/settings_screen.dart';
+import '../profile/profile_screen.dart';
 
 class AppNavigator extends StatefulWidget {
   const AppNavigator({super.key});

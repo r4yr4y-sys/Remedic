@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:remedic/core/theme/colors.dart';
-import '../../../../features/history/presentation/screens/history_screen.dart';
+import '../history/history_screen.dart';
 
 enum MedicineState { taken, missed, upcoming }
 
@@ -8,6 +9,30 @@ enum MedicineState { taken, missed, upcoming }
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final User? _user = FirebaseAuth.instance.currentUser;
+
+  String get _userName {
+    if (_user?.displayName != null && _user!.displayName!.isNotEmpty) {
+      return _user.displayName!;
+    }
+    return _user?.email?.split('@').first ?? 'User';
+  }
+
+  String get _userInitials {
+    final name = _userName;
+    if (name == 'User') return 'U';
+    final parts = name.split(' ');
+    if (parts.length >= 2) {
+      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+    }
+    return name.substring(0, name.length >= 3 ? 3 : name.length).toUpperCase();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 radius: 35,
                 backgroundColor: Colors.grey[900],
                 child: Text(
-                  "BRS",
+                  _userInitials,
                   style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
               ),
@@ -39,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 14, color: Colors.grey[500]),
                     ),
                     Text(
-                      "Jayed Raihan",
+                      _userName,
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
