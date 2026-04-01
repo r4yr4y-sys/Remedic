@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:remedic/core/services/auth_service.dart';
 import 'package:remedic/features/auth/login_screen.dart';
+import '../auth/registration_screen.dart';
+import '../history/history_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -32,24 +34,31 @@ class ProfileScreen extends StatelessWidget {
           children: [
             SizedBox(height: 30),
 
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Colors.grey[900],
-                  child: Text(
-                    initials,
-                    style: TextStyle(fontSize: 30, color: Colors.white),
+            GestureDetector(
+              onTap: () {Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegistrationScreen()),
+              );
+              },
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Colors.grey[900],
+                    child: Text(
+                      initials,
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ),
                   ),
-                ),
 
-                CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.camera_alt, size: 18, color: Colors.black),
-                ),
-              ],
+                  CircleAvatar(
+                    radius: 16,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.camera_alt, size: 18, color: Colors.black),
+                  ),
+                ],
+              ),
             ),
 
             SizedBox(height: 20),
@@ -72,25 +81,35 @@ class ProfileScreen extends StatelessWidget {
                     leading: Icon(Icons.person_outline),
                     title: Text("Edit Profile"),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                      onTap: () {Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegistrationScreen()),
+                      );
+                      },
                   ),
 
-                  ListTile(
-                    leading: Icon(Icons.notifications_none),
-                    title: Text("Notifications"),
-                    trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                  ),
+                  // ListTile(
+                  //   leading: Icon(Icons.notifications_none),
+                  //   title: Text("Notifications"),
+                  //   trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                  // ),
 
                   ListTile(
                     leading: Icon(Icons.history),
-                    title: Text("Health Records"),
+                    title: Text("Medicine Records"),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HistoryScreen()),
+                    );
+                    },
                   ),
 
-                  ListTile(
-                    leading: Icon(Icons.security),
-                    title: Text("Security"),
-                    trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                  ),
+                  // ListTile(
+                  //   leading: Icon(Icons.security),
+                  //   title: Text("Security"),
+                  //   trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                  // ),
 
                   SizedBox(height: 40),
 

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/theme/colors.dart';
 import '../widgets/medicine_widget.dart';
 import 'add_medication.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OngoingMedications extends StatefulWidget {
   const OngoingMedications({super.key});
@@ -62,63 +63,46 @@ class _OngoingMedicationsState extends State<OngoingMedications> {
         ],
       ),
 
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 12),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection("medicines").snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text("No medicines added"));
+          }
+
+          final medicines = snapshot.data!.docs;
+
+          return ListView.builder(
+            padding: const EdgeInsets.all(24),
+            itemCount: medicines.length,
+            itemBuilder: (context, index) {
+              final data = medicines[index];
+
+              String title = data['title'];
+              int dosePerTime = data['dosePerTime'];
+              int dosesPerDay = data['dosesPerDay'];
+              String time = data['time'];
+
+              return Column(
                 children: [
-                  Icon(
-                    FontAwesomeIcons.calendarDay,
-                    size: 16,
-                    color: Colors.grey,
+                  medicineWidget(
+                    title,
+                    "Tablet",
+                    " $time",
+                    dosePerTime,
+                    "After",
+                    true,
                   ),
-                  Text(
-                    " Today",
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
+                  const SizedBox(height: 20),
                 ],
-              ),
-              SizedBox(height: 20),
-              medicineWidget("Antacids", "Tablet", " 9AM", 2, "Before", true),
-              SizedBox(height: 20),
-              medicineWidget(
-                "Azithromycin - 10 mg",
-                "Capsule",
-                " 10PM",
-                1,
-                "After",
-                false,
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    FontAwesomeIcons.calendarWeek,
-                    size: 16,
-                    color: Colors.grey,
-                  ),
-                  Text(
-                    " Upcoming",
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              medicineWidget(
-                "Azithromycin - 10 mg",
-                "Injection",
-                " 10PM",
-                1,
-                "After",
-                true,
-              ),
-            ],
-          ),
-        ),
+              );
+            },
+          );
+        },
       ),
     );
   }
