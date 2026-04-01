@@ -5,9 +5,9 @@ import '../history/history_screen.dart';
 
 enum MedicineState { taken, missed, upcoming }
 
-enum MedicineState { taken, missed, upcoming }
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
@@ -206,6 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+              ),
 
               SizedBox(
                 height: 150,
