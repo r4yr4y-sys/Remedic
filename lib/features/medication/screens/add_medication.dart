@@ -48,17 +48,161 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
         ],
       ),
 
-      body: Column(
-        children: [
-          Row(
+      body: SingleChildScrollView(
+        child:
+          Column(
             children: [
+              Row(
+                children: [
+                  Container(
+                    width: 300,
+                    height: 70,
+                    margin: EdgeInsets.only(
+                      top: 40,
+                      bottom: 12,
+                      left: 24,
+                      right: 24,
+                    ),
+                    alignment: AlignmentGeometry.center,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1A1A1A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Amlodipine - 5 mg',
+                        hintStyle: TextStyle(color: Colors.grey[400]),
+                        filled: false,
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                      ),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 32, left: 16),
+                    child: StartTodayWidget(),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 40),
+              CustomSelector(),
+              Container(
+                alignment: AlignmentGeometry.topLeft,
+                margin: EdgeInsets.only(top: 65, left: 25),
+                child: Text(
+                  "Pills Quantity",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: AlignmentGeometry.topLeft,
+                margin: EdgeInsets.only(top: 5, left: 25),
+                child: Text(
+                  "How many pills do you have to take every dose",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+
+              Container(
+                margin: EdgeInsets.only(top: 24, left: 12, right: 12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+
+
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      alignment: AlignmentGeometry.topLeft,
+                      margin: EdgeInsets.only(top: 16, left: 25),
+                      child: Text(
+                        "Per Dose",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    CustomSlider(value: afternoonDose, onChanged: (val) => setState(() => afternoonDose = val)),
+                    MealTime()
+                  ],
+                )
+              ),
+
+              Container(
+                alignment: AlignmentGeometry.topLeft,
+                margin: EdgeInsets.only(top: 20, left: 25),
+                child: Text(
+                  "Number of doses",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: AlignmentGeometry.topLeft,
+                margin: EdgeInsets.only(top: 5, left: 25),
+                child: Text(
+                  "How many doses do you need everyday",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 24, left: 12, right: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[800],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        alignment: AlignmentGeometry.topLeft,
+                        margin: EdgeInsets.only(top: 16, left: 25),
+                        child: Text(
+                          "Number of Doses each day",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      CustomSlider(value: afternoonDose, onChanged: (val) => setState(() => afternoonDose = val)),
+
+                    ],
+
+                  )
+              ),
+              const SizedBox(height: 20),
+
+              SizedBox(
+                height: 60,
+                width: double.infinity,
+                child:Text("When do you want to start [example 8AM or 9PM]",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold, fontSize: 24))
+                    
+        
+    ),
               Container(
                 width: 300,
                 height: 70,
                 margin: EdgeInsets.only(
-                  top: 40,
-                  bottom: 12,
-                  left: 24,
+                  top: 20,
+                  bottom: 30,
+                  left:1,
                   right: 24,
                 ),
                 alignment: AlignmentGeometry.center,
@@ -75,10 +219,6 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
                   ),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 32, left: 16),
-                child: StartTodayWidget(),
               ),
             ],
           ),

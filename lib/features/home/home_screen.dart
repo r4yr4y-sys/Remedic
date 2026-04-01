@@ -5,7 +5,9 @@ import '../history/history_screen.dart';
 
 enum MedicineState { taken, missed, upcoming }
 
-class HomeScreen extends StatefulWidget {
+enum MedicineState { taken, missed, upcoming }
+
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
@@ -172,7 +174,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 15),
 
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -205,8 +206,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 15),
 
               SizedBox(
                 height: 150,
