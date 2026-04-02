@@ -4,6 +4,7 @@ import '../widgets/medicine_type.dart';
 import '../widgets/custom_slider.dart';
 import '../widgets/meal_time.dart';
 import '../widgets/start_today_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddMedicationScreen extends StatefulWidget {
   const AddMedicationScreen({super.key});
@@ -13,10 +14,22 @@ class AddMedicationScreen extends StatefulWidget {
 }
 
 class _AddMedicationScreenState extends State<AddMedicationScreen> {
+  final title = TextEditingController();
+  final time = TextEditingController();
+
   int afternoonDose = 1;
 
   int dosePerTime = 1;
   int dosesPerDay = 1;
+
+  Future<void> addMedicine() async {
+    await FirebaseFirestore.instance.collection("medicines").add({
+      "title": title.text.trim(),
+      "dosePerTime": dosePerTime,
+      "dosesPerDay": dosesPerDay,
+      "time": time.text.trim(),
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +65,7 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
       ),
 
       body: SingleChildScrollView(
-        child:
-        Column(
+        child: Column(
           children: [
             Row(
               children: [
@@ -72,6 +84,7 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: TextField(
+                    controller: title,
                     decoration: InputDecoration(
                       hintText: 'Amlodipine - 5 mg',
                       hintStyle: TextStyle(color: Colors.grey[400]),
@@ -95,10 +108,7 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
               margin: EdgeInsets.only(top: 65, left: 25),
               child: Text(
                 "Pills Quantity",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
             Container(
@@ -106,41 +116,38 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
               margin: EdgeInsets.only(top: 5, left: 25),
               child: Text(
                 "How many pills do you have to take every dose",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14,
-                ),
+                style: TextStyle(color: Colors.grey, fontSize: 14),
               ),
             ),
 
             Container(
-                margin: EdgeInsets.only(top: 24, left: 12, right: 12),
-                decoration: BoxDecoration(
-                  color: Colors.grey[800],
-                  borderRadius: BorderRadius.circular(12),
-                ),
+              margin: EdgeInsets.only(top: 24, left: 12, right: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey[800],
+                borderRadius: BorderRadius.circular(12),
+              ),
 
-
-
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: AlignmentGeometry.topLeft,
-                      margin: EdgeInsets.only(top: 16, left: 25),
-                      child: Text(
-                        "Per Dose",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: AlignmentGeometry.topLeft,
+                    margin: EdgeInsets.only(top: 16, left: 25),
+                    child: Text(
+                      "Per Dose",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    CustomSlider(value: dosePerTime,
-                      onChanged: (val) => setState(() => dosePerTime = val),),
-                    MealTime()
-                  ],
-                )
+                  ),
+                  CustomSlider(
+                    value: dosePerTime,
+                    onChanged: (val) => setState(() => dosePerTime = val),
+                  ),
+                  MealTime(),
+                ],
+              ),
             ),
 
             Container(
@@ -148,10 +155,7 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
               margin: EdgeInsets.only(top: 20, left: 25),
               child: Text(
                 "Number of doses",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
             Container(
@@ -159,63 +163,61 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
               margin: EdgeInsets.only(top: 5, left: 25),
               child: Text(
                 "How many doses do you need everyday",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14,
-                ),
+                style: TextStyle(color: Colors.grey, fontSize: 14),
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 24, left: 12, right: 12),
-                decoration: BoxDecoration(
-                  color: Colors.grey[800],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: AlignmentGeometry.topLeft,
-                      margin: EdgeInsets.only(top: 16, left: 25),
-                      child: Text(
-                        "Number of Doses each day",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
+              margin: EdgeInsets.only(top: 24, left: 12, right: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey[800],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: AlignmentGeometry.topLeft,
+                    margin: EdgeInsets.only(top: 16, left: 25),
+                    child: Text(
+                      "Number of Doses each day",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    CustomSlider(value: dosesPerDay,
-                      onChanged: (val) => setState(() => dosesPerDay = val),),
-
-                  ],
-
-                )
+                  ),
+                  CustomSlider(
+                    value: dosesPerDay,
+                    onChanged: (val) => setState(() => dosesPerDay = val),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
 
             SizedBox(
-                height: 60,
-                width: double.infinity,
-                child:Text("When do you want to start [example 8AM or 9PM]",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold, fontSize: 24))
-
-
+              height: 60,
+              width: double.infinity,
+              child: Text(
+                "When do you want to start [example 8AM or 9PM]",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
+              ),
             ),
             Container(
               width: 300,
               height: 70,
-              margin: EdgeInsets.only(
-                top: 20,
-                bottom: 30,
-                left:1,
-                right: 24,
-              ),
+              margin: EdgeInsets.only(top: 20, bottom: 30, left: 1, right: 24),
               alignment: AlignmentGeometry.center,
               decoration: BoxDecoration(
                 color: const Color(0xFF1A1A1A),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: TextField(
+                controller: time,
                 decoration: InputDecoration(
                   hintText: '9-Am',
                   hintStyle: TextStyle(color: Colors.grey[400]),
@@ -225,9 +227,36 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
+            const SizedBox(height: 0),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[800],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () async {
+                    addMedicine();
+                  },
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-
       ),
     );
   }

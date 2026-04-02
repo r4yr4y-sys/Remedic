@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -21,22 +22,6 @@ class HistoryScreen extends StatelessWidget {
               shape: BoxShape.circle,
               color: Colors.grey[900],
             ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.notification_add,
-                size: 18,
-                color: Colors.white,
-                weight: 10,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HistoryScreen(),
-                  ),
-                );
-              },
-            ),
           ),
         ],
       ),
@@ -47,26 +32,6 @@ class HistoryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
-
-              SizedBox(
-                height: 80,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    dateBox("M", "12", false),
-                    dateBox("T", "13", false),
-                    dateBox("W", "14", true),
-                    dateBox("T", "15", false),
-                    dateBox("F", "16", false),
-                    dateBox("S", "17", false),
-                    dateBox("S", "18", false),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 30),
-
               Text(
                 "COMPLETED ACTIVITIES",
                 style: TextStyle(
@@ -79,8 +44,64 @@ class HistoryScreen extends StatelessWidget {
               SizedBox(height: 20),
 
               Expanded(
-                child: ListView(
-                  children: List.generate(8, (index) => activityItem()),
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("medicines")
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      return const Center(
+                        child: Text(
+                          "No history found",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+                    }
+
+                    final medicines = snapshot.data!.docs;
+
+                    return ListView.builder(
+                      itemCount: medicines.length,
+                      itemBuilder: (context, index) {
+                        final data = medicines[index];
+
+                        String title = data['title'];
+                        int dosePerTime = data['dosePerTime'];
+                        int dosesPerDay = data['dosesPerDay'];
+                        String time = data['time'];
+
+                        return ListTile(
+                          leading: const Icon(
+                            Icons.circle,
+                            size: 10,
+                            color: Colors.grey,
+                          ),
+
+                          title: Text(
+                            title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+
+                          subtitle: Text(
+                            "$dosePerTime dose • $dosesPerDay times/day • $time",
+                            style: const TextStyle(color: Colors.grey),
+                          ),
+
+                          trailing: const Icon(
+                            Icons.check_circle_outline,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
             ],

@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: IconButton(
                   icon: const Icon(
-                    Icons.notifications,
+                    Icons.history,
                     size: 18,
                     color: Colors.white,
                     weight: 10,
